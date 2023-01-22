@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_trainer_consultant/features/patients/models/patient.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/models/exercise.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/workout_editor_controller.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/workout_editor_page.dart';
@@ -11,6 +12,10 @@ import 'package:personal_trainer_consultant/features/workout_builder/pages/worko
 import 'package:personal_trainer_consultant/navigator/app_navigator.dart';
 
 class WorkoutsListController {
+  final Patient patient;
+
+  WorkoutsListController({required this.patient});
+
   final ValueNotifier<List<Workout>> workoutList = ValueNotifier([]);
 
   void addNewWorkout(BuildContext context) async {

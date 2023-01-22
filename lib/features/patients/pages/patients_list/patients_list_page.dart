@@ -1,37 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/workouts_list_controller.dart';
-import 'package:personal_trainer_consultant/widgets/app_card.dart';
+import 'package:personal_trainer_consultant/features/patients/pages/patients_list/patient_list_controller.dart';
 import 'package:personal_trainer_consultant/widgets/app_button.dart';
+import 'package:personal_trainer_consultant/widgets/app_card.dart';
 import 'package:personal_trainer_consultant/widgets/app_text.dart';
 
-class WorkoutsListPage extends StatelessWidget {
-  final WorkoutsListController controller;
+class PatientListPage extends StatelessWidget {
+  final PatientListController controller;
 
-  const WorkoutsListPage({
-    super.key,
+  const PatientListPage({
     required this.controller,
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(controller.patient.name),
+        title: const Text('Alunos'),
       ),
       persistentFooterAlignment: AlignmentDirectional.center,
       persistentFooterButtons: [
         AppButton.outlined(
-          text: 'Incluir Novo Treino',
-          onPressed: () => controller.addNewWorkout(context),
+          text: 'Incluir Novo Aluno',
+          onPressed: () => controller.addNewPatient(context),
         )
       ],
       body: SafeArea(
         child: ValueListenableBuilder(
-          valueListenable: controller.workoutList,
+          valueListenable: controller.patients,
           builder: (_, value, __) {
             if (value.isEmpty) {
-              return Center(
-                  child: AppText.regular('Nenhum treino encontrado.'));
+              return Center(child: AppText.regular('Nenhum aluno encontrado.'));
             }
 
             return ListView.builder(
@@ -40,9 +39,11 @@ class WorkoutsListPage extends StatelessWidget {
                 var item = value[index];
                 return AppCard.regular(
                   child: AppText.regularLargeBold(item.name),
-                  onTap: () => controller.openWorkoutEditor(context, item),
+                  onTap: () {
+                    controller.openWorkoutBuilder(context, item);
+                  },
                   onLongPress: () =>
-                      controller.showWorkoutOptions(context, item),
+                      controller.showPatientOptions(context, item),
                 );
               },
               itemCount: value.length,
