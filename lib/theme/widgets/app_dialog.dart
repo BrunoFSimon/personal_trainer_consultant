@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// TODO - it's not a widget, move it to the right place
+
 abstract class AppDialog {
   static Widget show({
     required Widget child,
