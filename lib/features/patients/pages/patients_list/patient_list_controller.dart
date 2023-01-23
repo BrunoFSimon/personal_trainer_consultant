@@ -5,13 +5,15 @@ import 'package:personal_trainer_consultant/features/patients/pages/patient_crea
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/workouts_list_controller.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/workouts_list_page.dart';
 import 'package:personal_trainer_consultant/navigator/app_navigator.dart';
-import 'package:personal_trainer_consultant/widgets/app_options_list_widget.dart';
+import 'package:personal_trainer_consultant/theme/page_template/template_list/template_list_controller.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_options_list_widget.dart';
 
-class PatientListController {
+class PatientListController implements TemplateListController<Patient> {
   final ValueNotifier<List<Patient>> patients = ValueNotifier([]);
 
   // public methods
-  void openPatientEditor(BuildContext context, Patient item) async {
+  @override
+  void showItemEditor(BuildContext context, Patient item) async {
     var result = await AppNavigator.pushPage<Patient>(
         context,
         PatientCreatorPage(
@@ -26,7 +28,8 @@ class PatientListController {
     _replacePatient(newValue: result, oldValue: item);
   }
 
-  void showPatientOptions(BuildContext context, Patient item) {
+  @override
+  void showItemOptions(BuildContext context, Patient item) {
     AppNavigator.pushDialog(
       context,
       AppOptionsListWidget(
@@ -34,7 +37,7 @@ class PatientListController {
           AppOptionsListWidgetOption(
             icon: Icons.edit,
             title: 'Editar',
-            onTap: () => openPatientEditor(context, item),
+            onTap: () => showItemEditor(context, item),
           ),
           AppOptionsListWidgetOption(
             icon: Icons.delete,
@@ -46,7 +49,8 @@ class PatientListController {
     );
   }
 
-  void addNewPatient(BuildContext context) async {
+  @override
+  void addNewItem(BuildContext context) async {
     var result = await AppNavigator.pushPage<Patient>(
         context,
         PatientCreatorPage(
@@ -61,9 +65,15 @@ class PatientListController {
     _includePatient(result);
   }
 
-  void openWorkoutBuilder(BuildContext context, Patient item) {
-    AppNavigator.pushPage(context,
-        WorkoutsListPage(controller: WorkoutsListController(patient: item)));
+  @override
+  void openItem(BuildContext context, Patient item) {
+    AppNavigator.pushPage(
+      context,
+      WorkoutsListPage(
+        controller: WorkoutsListController(),
+        patient: item,
+      ),
+    );
   }
   // public methods
 
@@ -82,5 +92,8 @@ class PatientListController {
   void _deletePatient(Patient item) {
     patients.value = [...patients.value.where((element) => element != item)];
   }
+
+  @override
+  ValueNotifier<List<Patient>> get items => patients;
   // private methods
 }

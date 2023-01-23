@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:personal_trainer_consultant/extensions/string_extensions.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/add_new_exercise/add_new_exercise_controller.dart';
-import 'package:personal_trainer_consultant/widgets/app_button.dart';
-import 'package:personal_trainer_consultant/widgets/app_dialog.dart';
-import 'package:personal_trainer_consultant/widgets/app_spacer.dart';
-import 'package:personal_trainer_consultant/widgets/app_text.dart';
-import 'package:personal_trainer_consultant/widgets/app_text_field.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_button.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_dialog.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_spacer.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_text.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_text_field.dart';
 
 class AddNewExerciseDialog extends StatelessWidget {
   final AddNewExerciseController controller;

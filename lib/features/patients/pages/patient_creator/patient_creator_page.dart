@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_trainer_consultant/features/patients/pages/patient_creator/patient_creator_controller.dart';
-import 'package:personal_trainer_consultant/widgets/app_button.dart';
-import 'package:personal_trainer_consultant/widgets/app_spacer.dart';
-import 'package:personal_trainer_consultant/widgets/app_text_field.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_button.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_spacer.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_text_field.dart';
 
 class PatientCreatorPage extends StatelessWidget {
   final PatientCreatorController controller;

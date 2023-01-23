@@ -1,55 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:personal_trainer_consultant/features/patients/models/patient.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/workouts_list_controller.dart';
-import 'package:personal_trainer_consultant/widgets/app_card.dart';
-import 'package:personal_trainer_consultant/widgets/app_button.dart';
-import 'package:personal_trainer_consultant/widgets/app_text.dart';
+import 'package:personal_trainer_consultant/theme/page_template/template_list/template_list_page.dart';
 
 class WorkoutsListPage extends StatelessWidget {
+  final Patient patient;
   final WorkoutsListController controller;
 
   const WorkoutsListPage({
     super.key,
+    required this.patient,
     required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(controller.patient.name),
-      ),
-      persistentFooterAlignment: AlignmentDirectional.center,
-      persistentFooterButtons: [
-        AppButton.outlined(
-          text: 'Incluir Novo Treino',
-          onPressed: () => controller.addNewWorkout(context),
-        )
-      ],
-      body: SafeArea(
-        child: ValueListenableBuilder(
-          valueListenable: controller.workoutList,
-          builder: (_, value, __) {
-            if (value.isEmpty) {
-              return Center(
-                  child: AppText.regular('Nenhum treino encontrado.'));
-            }
-
-            return ListView.builder(
-              shrinkWrap: true,
-              itemBuilder: (_, index) {
-                var item = value[index];
-                return AppCard.regular(
-                  child: AppText.regularLargeBold(item.name),
-                  onTap: () => controller.openWorkoutEditor(context, item),
-                  onLongPress: () =>
-                      controller.showWorkoutOptions(context, item),
-                );
-              },
-              itemCount: value.length,
-            );
-          },
-        ),
-      ),
-    );
+    return TemplateListPage(title: patient.name, controller: controller);
   }
 }

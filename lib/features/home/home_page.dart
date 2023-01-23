@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_trainer_consultant/features/home/home_controller.dart';
-import 'package:personal_trainer_consultant/widgets/app_button.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_button.dart';
 
 class HomePage extends StatelessWidget {
   final HomeController controller;

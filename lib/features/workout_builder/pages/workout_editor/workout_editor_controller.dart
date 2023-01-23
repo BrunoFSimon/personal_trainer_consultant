@@ -3,7 +3,7 @@ import 'package:personal_trainer_consultant/features/workout_builder/models/exer
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/add_new_exercise/add_new_exercise_controller.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/add_new_exercise/add_new_exercise_dialog.dart';
 import 'package:personal_trainer_consultant/navigator/app_navigator.dart';
-import 'package:personal_trainer_consultant/widgets/app_options_list_widget.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_options_list_widget.dart';
 
 class WorkoutEditorController {
   final ValueNotifier<List<Exercise>> exerciseList = ValueNotifier([]);

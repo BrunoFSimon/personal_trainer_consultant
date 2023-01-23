@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/models/exercise.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/workout_editor_controller.dart';
-import 'package:personal_trainer_consultant/widgets/app_button.dart';
-import 'package:personal_trainer_consultant/widgets/app_card.dart';
-import 'package:personal_trainer_consultant/widgets/app_spacer.dart';
-import 'package:personal_trainer_consultant/widgets/app_text.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_button.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_card.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_spacer.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_text.dart';
 
 class WorkoutEditorPage extends StatelessWidget {
   final WorkoutEditorController controller;

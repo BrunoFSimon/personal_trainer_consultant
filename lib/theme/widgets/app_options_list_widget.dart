@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_trainer_consultant/navigator/app_navigator.dart';
-import 'package:personal_trainer_consultant/widgets/app_button.dart';
-import 'package:personal_trainer_consultant/widgets/app_dialog.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_button.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_dialog.dart';
 
 class AppOptionsListWidgetOption {
   final void Function() onTap;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:personal_trainer_consultant/features/patients/models/patient.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/models/exercise.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/workout_editor_controller.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/workout_editor_page.dart';
@@ -9,16 +8,14 @@ import 'package:personal_trainer_consultant/features/workout_builder/pages/worko
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/edit_workout/edit_workout_dialog.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/models/workout.dart';
 import 'package:personal_trainer_consultant/navigator/app_navigator.dart';
-import 'package:personal_trainer_consultant/widgets/app_options_list_widget.dart';
+import 'package:personal_trainer_consultant/theme/page_template/template_list/template_list_controller.dart';
+import 'package:personal_trainer_consultant/theme/widgets/app_options_list_widget.dart';
 
-class WorkoutsListController {
-  final Patient patient;
-
-  WorkoutsListController({required this.patient});
-
+class WorkoutsListController implements TemplateListController<Workout> {
   final ValueNotifier<List<Workout>> workoutList = ValueNotifier([]);
 
-  void addNewWorkout(BuildContext context) async {
+  @override
+  void addNewItem(BuildContext context) async {
     var result = await AppNavigator.pushDialog<Workout>(
       context,
       AddNewWorkoutDialog(
@@ -51,7 +48,8 @@ class WorkoutsListController {
         .toList();
   }
 
-  void editWorkout(BuildContext context, Workout workout) async {
+  @override
+  void showItemEditor(BuildContext context, Workout workout) async {
     var result = await AppNavigator.pushDialog<Workout>(
       context,
       EditWorkoutDialog(
@@ -76,14 +74,15 @@ class WorkoutsListController {
     includeWorkout(newWorkout);
   }
 
-  void showWorkoutOptions(BuildContext context, Workout workout) {
+  @override
+  void showItemOptions(BuildContext context, Workout workout) {
     AppNavigator.pushDialog(
       context,
       AppOptionsListWidget(
         options: [
           AppOptionsListWidgetOption(
             title: 'Edit',
-            onTap: () => editWorkout(context, workout),
+            onTap: () => showItemEditor(context, workout),
             icon: Icons.edit,
           ),
           AppOptionsListWidgetOption(
@@ -96,7 +95,8 @@ class WorkoutsListController {
     );
   }
 
-  void openWorkoutEditor(BuildContext context, Workout item) async {
+  @override
+  void openItem(BuildContext context, Workout item) async {
     var exercises = await AppNavigator.pushPage<List<Exercise>>(
       context,
       WorkoutEditorPage(
@@ -113,4 +113,7 @@ class WorkoutsListController {
 
     replaceWorkout(oldItem: item, newItem: newItem);
   }
+
+  @override
+  ValueNotifier<List<Workout>> get items => workoutList;
 }
