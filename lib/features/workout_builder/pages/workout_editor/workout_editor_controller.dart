@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/models/exercise.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/add_new_exercise/add_new_exercise_controller.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/add_new_exercise/add_new_exercise_dialog.dart';
-import 'package:personal_trainer_consultant/features/workout_builder/pages/workout_editor/widgets/workout_editor_options_dialog.dart';
 import 'package:personal_trainer_consultant/navigator/app_navigator.dart';
+import 'package:personal_trainer_consultant/widgets/app_options_list_widget.dart';
 
 class WorkoutEditorController {
   final ValueNotifier<List<Exercise>> exerciseList = ValueNotifier([]);
@@ -36,9 +36,19 @@ class WorkoutEditorController {
   void showExerciseOptions(BuildContext context, Exercise item) {
     AppNavigator.pushDialog(
       context,
-      WorkoutEditorOptionsDialog(
-        delete: () => removeExercise(item),
-        edit: () => editExercise(context, item),
+      AppOptionsListWidget(
+        options: [
+          AppOptionsListWidgetOption(
+            icon: Icons.edit,
+            title: 'Editar',
+            onTap: () => editExercise(context, item),
+          ),
+          AppOptionsListWidgetOption(
+            icon: Icons.delete,
+            title: 'Excluir',
+            onTap: () => removeExercise(item),
+          ),
+        ],
       ),
     );
   }

@@ -8,8 +8,8 @@ import 'package:personal_trainer_consultant/features/workout_builder/pages/worko
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/edit_workout/edit_workout_controller.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/edit_workout/edit_workout_dialog.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/models/workout.dart';
-import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/widgets/workout_options_dialog.dart';
 import 'package:personal_trainer_consultant/navigator/app_navigator.dart';
+import 'package:personal_trainer_consultant/widgets/app_options_list_widget.dart';
 
 class WorkoutsListController {
   final Patient patient;
@@ -79,9 +79,19 @@ class WorkoutsListController {
   void showWorkoutOptions(BuildContext context, Workout workout) {
     AppNavigator.pushDialog(
       context,
-      WorkoutOptionsDialog(
-        delete: () => removeWorkout(workout),
-        edit: () => editWorkout(context, workout),
+      AppOptionsListWidget(
+        options: [
+          AppOptionsListWidgetOption(
+            title: 'Edit',
+            onTap: () => editWorkout(context, workout),
+            icon: Icons.edit,
+          ),
+          AppOptionsListWidgetOption(
+            title: 'Delete',
+            onTap: () => removeWorkout(workout),
+            icon: Icons.delete,
+          ),
+        ],
       ),
     );
   }

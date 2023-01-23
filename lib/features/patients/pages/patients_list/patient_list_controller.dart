@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:personal_trainer_consultant/features/patients/models/patient.dart';
 import 'package:personal_trainer_consultant/features/patients/pages/patient_creator/patient_creator_controller.dart';
 import 'package:personal_trainer_consultant/features/patients/pages/patient_creator/patient_creator_page.dart';
-import 'package:personal_trainer_consultant/features/patients/pages/patients_list/widgets/patient_list_options_dialog.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/workouts_list_controller.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/workouts_list_page.dart';
 import 'package:personal_trainer_consultant/navigator/app_navigator.dart';
+import 'package:personal_trainer_consultant/widgets/app_options_list_widget.dart';
 
 class PatientListController {
   final ValueNotifier<List<Patient>> patients = ValueNotifier([]);
@@ -29,9 +29,19 @@ class PatientListController {
   void showPatientOptions(BuildContext context, Patient item) {
     AppNavigator.pushDialog(
       context,
-      PatientListOptionsDialog(
-        delete: () => _deletePatient(item),
-        edit: () => openPatientEditor(context, item),
+      AppOptionsListWidget(
+        options: [
+          AppOptionsListWidgetOption(
+            icon: Icons.edit,
+            title: 'Editar',
+            onTap: () => openPatientEditor(context, item),
+          ),
+          AppOptionsListWidgetOption(
+            icon: Icons.delete,
+            title: 'Excluir',
+            onTap: () => _deletePatient(item),
+          ),
+        ],
       ),
     );
   }
