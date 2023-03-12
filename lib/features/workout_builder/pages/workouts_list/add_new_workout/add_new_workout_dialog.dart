@@ -34,6 +34,11 @@ class AddNewWorkoutDialog extends StatelessWidget {
             controller.name.value = value.capitalize();
           },
           validator: controller.validateName,
+          onEditingComplete: () => controller.addWorkout(
+            nextWorkoutId: nextWorkoutId,
+            context: context,
+            formKey: formKey,
+          ),
         ),
         AppSpacer.vertical8(),
         AppButton.elevated(

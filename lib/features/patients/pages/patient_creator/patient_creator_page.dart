@@ -41,9 +41,11 @@ class PatientCreatorPage extends StatelessWidget {
                   onChanged: controller.setName,
                   hint: 'Nome e Sobrenome',
                   validator: controller.validateName,
+                  onEditingComplete: () => FocusScope.of(context).nextFocus(),
                 ),
                 AppSpacer.vertical4(),
                 AppTextField.phone(
+                  onEditingComplete: () => controller.save(context),
                   onChanged: controller.setPhone,
                   initialValue: controller.phone.value,
                 ),

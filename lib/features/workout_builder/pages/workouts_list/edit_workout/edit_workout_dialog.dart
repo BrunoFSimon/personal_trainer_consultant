@@ -36,16 +36,21 @@ class EditWorkoutDialog extends StatelessWidget {
           label: 'Nome',
           onChanged: (s) => controller.name.value = s.capitalize(),
           hint: 'Ex: Treino de Peito',
+          onEditingComplete: () => _save(context),
         ),
         AppSpacer.vertical8(),
         AppButton.elevated(
           text: 'Salvar',
           onPressed: () {
-            AppNavigator.popPage(context);
-            controller.save(context, onSavePressed);
+            _save(context);
           },
         )
       ],
     );
+  }
+
+  void _save(BuildContext context) {
+    AppNavigator.popPage(context);
+    controller.save(context, onSavePressed);
   }
 }

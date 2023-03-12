@@ -78,7 +78,10 @@ class WorkoutEditorController {
       ),
     );
 
-    if (result == null) debugPrint('AddNewExerciseDialog returned null');
+    if (result == null) {
+      debugPrint('AddNewExerciseDialog returned null');
+      return;
+    }
 
     replaceExercise(exercise, result!);
   }

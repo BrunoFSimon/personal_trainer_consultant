@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:personal_trainer_consultant/utils/app_text_formatters.dart';
 
 abstract class AppTextField {
-  static Widget regular({
-    String? Function(String?)? validator,
-    required String label,
-    required void Function(String) onChanged,
-    required String hint,
-    String? initialValue,
-  }) {
+  static Widget regular(
+      {String? Function(String?)? validator,
+      required String label,
+      required void Function(String) onChanged,
+      required String hint,
+      String? initialValue,
+      void Function()? onEditingComplete}) {
     return TextFormField(
+      onEditingComplete: onEditingComplete,
       onChanged: onChanged,
       initialValue: initialValue,
       validator: validator,
@@ -20,11 +21,12 @@ abstract class AppTextField {
     );
   }
 
-  static Widget phone({
-    required void Function(String) onChanged,
-    String? initialValue,
-  }) {
+  static Widget phone(
+      {required void Function(String) onChanged,
+      String? initialValue,
+      void Function()? onEditingComplete}) {
     return TextFormField(
+      onEditingComplete: onEditingComplete,
       onChanged: onChanged,
       initialValue: initialValue,
       inputFormatters: [AppTextFormatters.phone],

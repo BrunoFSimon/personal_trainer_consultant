@@ -33,16 +33,17 @@ class AddNewExerciseDialog extends StatelessWidget {
           },
           validator: controller.validateEmptyField,
           initialValue: controller.name.value,
+          onEditingComplete: () => FocusScope.of(context).nextFocus(),
         ),
         AppTextField.regular(
-          label: 'Séries e Repetições',
-          hint: 'Ex: 1x10, 1x8, 1x6 ',
-          onChanged: (value) {
-            controller.setsAndReps.value = value.capitalize();
-          },
-          validator: controller.validateEmptyField,
-          initialValue: controller.setsAndReps.value,
-        ),
+            label: 'Séries e Repetições',
+            hint: 'Ex: 1x10, 1x8, 1x6 ',
+            onChanged: (value) {
+              controller.setsAndReps.value = value.capitalize();
+            },
+            validator: controller.validateEmptyField,
+            initialValue: controller.setsAndReps.value,
+            onEditingComplete: () => FocusScope.of(context).nextFocus()),
         AppTextField.regular(
           label: 'Observações',
           hint: 'Ex: biset, rest-pause, dropset, etc',
@@ -50,6 +51,10 @@ class AddNewExerciseDialog extends StatelessWidget {
             controller.observations.value = value.capitalize();
           },
           initialValue: controller.observations.value,
+          onEditingComplete: () => controller.addExercise(
+            context: context,
+            formKey: formKey,
+          ),
         ),
         AppSpacer.vertical8(),
         AppButton.elevated(
