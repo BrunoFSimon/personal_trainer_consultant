@@ -83,7 +83,7 @@ class WorkoutEditorController {
       return;
     }
 
-    replaceExercise(exercise, result!);
+    replaceExercise(exercise, result);
   }
 
   void replaceExercise(Exercise oldItem, Exercise newItem) {

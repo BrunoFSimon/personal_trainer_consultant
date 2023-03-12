@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_trainer_consultant/extensions/string_extensions.dart';
 import 'package:personal_trainer_consultant/features/workout_builder/pages/workouts_list/edit_workout/edit_workout_controller.dart';
 import 'package:personal_trainer_consultant/navigator/app_navigator.dart';
-import 'package:personal_trainer_consultant/theme/widgets/app_dialog.dart';
+import 'package:personal_trainer_consultant/components/app_dialog.dart';
 import 'package:personal_trainer_consultant/theme/widgets/app_button.dart';
 import 'package:personal_trainer_consultant/theme/widgets/app_text.dart';
 import 'package:personal_trainer_consultant/theme/widgets/app_spacer.dart';
